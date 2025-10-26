@@ -11,10 +11,7 @@ BUILD=build
 image: $(BUILD)/BOS.img
 
 $(BUILD)/BOS.img: bootloader
-	dd if=/dev/zero of=$(BUILD)/BOS.img bs=512 count=2880
-
-	mkfs.fat -F 12 -n "MyOS FS" $(BUILD)/BOS.img
-	dd if=$(BUILD)/boot.bin of=$(BUILD)/BOS.img conv=notrunc
+	dd if=$(BUILD)/boot.bin of=$(BUILD)/BOS.img bs=512 count=1 conv=notrunc
 
 #######################
 # BOOTLOADER
